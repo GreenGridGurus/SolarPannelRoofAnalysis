@@ -12,7 +12,7 @@ import geopandas as gpd
 import pandas as pd
 import shapely
 from shapely.geometry import MultiPolygon, Polygon, Point, box
-shapely.speedups.disable()
+#shapely.speedups.disable()
 import numpy as np
 import cv2
 import os
