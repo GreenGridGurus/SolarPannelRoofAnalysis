@@ -4,9 +4,8 @@ import os
 import gmaps
 import config
 import numpy as np
-import segmentation_models as sm
+import time
 
-from radiationProject.Backend.functions import get_aerial_image_from_lat_lon_as_numpy
 
 st.set_page_config(
     page_title="Heatmap",
@@ -137,7 +136,6 @@ with st.container():
 
         # Use streamlit.text_input() to get the user's address input
         address = st.text_input("Enter your address:")
-
         if address:
             geocode_result = gmaps.geocode(address)
 
@@ -145,7 +143,10 @@ with st.container():
                 latitude = geocode_result[0]["geometry"]["location"]["lat"]
                 longitude = geocode_result[0]["geometry"]["location"]["lng"]
 
-                number_flat, number_not_flat, pv_modules = getImagesBackend(latitude, longitude)
+                with st.spinner("Loading images..."):
+                    # Introduce a 3-second delay before loading the images
+                    time.sleep(3)
+
 
 
 
@@ -201,8 +202,7 @@ with st.container():
 
     col1, col2, col3 = st.columns(3)
 
-
-    # file_path = os.path.join(os.path.dirname(__file__), "image.png")
-    # col1.image(file_path, caption="Image 1", use_column_width=True)
-    # col2.image(file_path, caption="Image 2", use_column_width=True)
-    # col3.image(file_path, caption="Image 3", use_column_width=True)
+    file_path = os.path.join(os.path.dirname(__file__), "image.png")
+    col1.image(file_path, caption="Image 1", use_column_width=True)
+    col2.image(file_path, caption="Image 2", use_column_width=True)
+    col3.image(file_path, caption="Image 3", use_column_width=True)
