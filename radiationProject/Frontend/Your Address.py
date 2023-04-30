@@ -148,8 +148,6 @@ with st.container():
                     time.sleep(3)
 
 
-
-
         # Define the HTML string that will contain the map
         html_string = f"""
         <!DOCTYPE html>
